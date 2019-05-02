@@ -1,18 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import themeProvider from './themeProvider';
 
-const style = () => ({
+import themeProvider from './themeProvider';
+import GameBoard from './GameBoard';
+
+const style = theme => ({
   container: {
-    maxWidth: '360px',
-    margin: '0 auto',
+    maxWidth: '400px',
+    margin: `${theme.spacing.unit * 8}px auto 0`,
   },
 });
 
 const App = ({ classes }) => (
   <div className={classes.container}>
-    <h1>Hello World</h1>
+    <GameBoard />
   </div>
 );
 
