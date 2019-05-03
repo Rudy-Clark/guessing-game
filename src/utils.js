@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 import {
   red,
   green,
@@ -6,7 +8,7 @@ import {
   indigo,
   cyan,
   yellow,
-  grey,
+  brown,
 } from '@material-ui/core/colors';
 
 const main = 500;
@@ -18,7 +20,7 @@ export const colors = [
   indigo[main],
   cyan[main],
   yellow[main],
-  grey[main],
+  brown[main],
 ];
 
 // Generate unique id
@@ -38,8 +40,9 @@ export const defaultState = () => {
   for (let i = 0; i < 16; i++) {
     cells.push({
       id: generateId(5),
-      color: '#00bcd4',
-      clicked: false,
+      color: '',
+      selected: false,
+      hidden: false,
     });
   }
   return cells;

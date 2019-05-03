@@ -25,19 +25,19 @@ const styles = () => ({
   default: {
     backgroundColor: '#fff',
   },
-  clicked: {
+  selected: {
     border: '3px dashed #424242',
   },
   ...implementedColors,
 });
 
-const Cell = ({ classes, color, clicked, handleClick }) => (
+const Cell = ({ classes, color, selected, handleClick }) => (
   <button
     tabIndex={-1}
     type="button"
     onClick={handleClick}
-    className={classnames(classes.cell, classes[color], {
-      [classes.clicked]: clicked,
+    className={classnames(classes.cell, classes[color || 'default'], {
+      [classes.selected]: selected,
     })}
   />
 );
@@ -45,7 +45,7 @@ const Cell = ({ classes, color, clicked, handleClick }) => (
 Cell.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
-  clicked: PropTypes.bool.isRequired,
+  selected: PropTypes.bool.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 

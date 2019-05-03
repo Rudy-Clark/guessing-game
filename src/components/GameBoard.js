@@ -24,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-const GameBoard = ({ classes, cells, select, startGame }) => (
+const GameBoard = ({ classes, cells, select, start }) => (
   <div className={classes.container}>
     <Paper className={classes.paper}>
       <Grid container>
@@ -36,7 +36,7 @@ const GameBoard = ({ classes, cells, select, startGame }) => (
       </Grid>
     </Paper>
     <Button
-      onClick={startGame}
+      onClick={start}
       className={classes.buttonStart}
       variant="contained"
       color="primary"
@@ -50,6 +50,7 @@ GameBoard.propTypes = {
   classes: PropTypes.object.isRequired,
   cells: PropTypes.array.isRequired,
   select: PropTypes.func.isRequired,
+  start: PropTypes.func.isRequired,
 };
 
 const styledComponent = withStyles(styles)(GameBoard);
@@ -60,7 +61,7 @@ const mapStateToProps = ({ cells }) => ({
 
 const mapDispatchToProps = dispatch => ({
   select: id => dispatch(selectItem(id)),
-  startGame: () => dispatch(startGame()),
+  start: () => dispatch(startGame()),
 });
 
 export default connect(
