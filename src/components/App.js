@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-import themeProvider from './themeProvider';
+import reducer from '../reducers';
+import themeProvider from '../themeProvider';
 import GameBoard from './GameBoard';
+
+const store = createStore(reducer);
 
 const style = theme => ({
   container: {
@@ -13,9 +18,11 @@ const style = theme => ({
 });
 
 const App = ({ classes }) => (
-  <div className={classes.container}>
-    <GameBoard />
-  </div>
+  <Provider store={store}>
+    <div className={classes.container}>
+      <GameBoard />
+    </div>
+  </Provider>
 );
 
 App.propTypes = {

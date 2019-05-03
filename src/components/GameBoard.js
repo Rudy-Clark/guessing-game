@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
 
 import Cell from './Cell';
 
@@ -22,19 +23,16 @@ const styles = theme => ({
   },
 });
 
-const cells = [];
-// eslint-disable-next-line no-plusplus
-for (let i = 0; i < 16; i++) {
-  cells.push({ id: i, color: 'default' });
-}
-
-const GameBoard = ({ classes }) => (
+const GameBoard = ({ classes, cells }) => (
   <div className={classes.container}>
     <Paper className={classes.paper}>
       <Grid container>
         {cells.map(cell => (
           <Grid key={cell.id} item xs={3}>
-            <Cell color={cell.color} />
+            <Cell
+              // onClick={}
+              {...cell}
+            />
           </Grid>
         ))}
       </Grid>
@@ -47,6 +45,13 @@ const GameBoard = ({ classes }) => (
 
 GameBoard.propTypes = {
   classes: PropTypes.object.isRequired,
+  cells: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(GameBoard);
+const styledComponent = withStyles(styles)(GameBoard);
+
+const mapStateToProps = ({ cells }) => ({
+  cells,
+});
+
+export default connect(mapStateToProps)(styledComponent);
