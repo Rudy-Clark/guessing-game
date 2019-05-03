@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
 import Cell from './Cell';
+import { selectItem, startGame } from '../actions';
 
 const styles = theme => ({
   paper: {
@@ -23,21 +24,23 @@ const styles = theme => ({
   },
 });
 
-const GameBoard = ({ classes, cells }) => (
+const GameBoard = ({ classes, cells, select, startGame }) => (
   <div className={classes.container}>
     <Paper className={classes.paper}>
       <Grid container>
         {cells.map(cell => (
           <Grid key={cell.id} item xs={3}>
-            <Cell
-              // onClick={}
-              {...cell}
-            />
+            <Cell handleClick={() => select(cell.id)} {...cell} />
           </Grid>
         ))}
       </Grid>
     </Paper>
-    <Button className={classes.buttonStart} variant="contained" color="primary">
+    <Button
+      onClick={startGame}
+      className={classes.buttonStart}
+      variant="contained"
+      color="primary"
+    >
       Start Game
     </Button>
   </div>
@@ -46,6 +49,7 @@ const GameBoard = ({ classes, cells }) => (
 GameBoard.propTypes = {
   classes: PropTypes.object.isRequired,
   cells: PropTypes.array.isRequired,
+  select: PropTypes.func.isRequired,
 };
 
 const styledComponent = withStyles(styles)(GameBoard);
@@ -54,4 +58,12 @@ const mapStateToProps = ({ cells }) => ({
   cells,
 });
 
-export default connect(mapStateToProps)(styledComponent);
+const mapDispatchToProps = dispatch => ({
+  select: id => dispatch(selectItem(id)),
+  startGame: () => dispatch(startGame()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(styledComponent);
