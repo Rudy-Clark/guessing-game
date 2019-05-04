@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import reducer from '../reducers';
 import themeProvider from '../themeProvider';
@@ -19,6 +20,7 @@ const style = theme => ({
 
 const App = ({ classes }) => (
   <Provider store={store}>
+    <CssBaseline />
     <div className={classes.container}>
       <GameBoard />
     </div>

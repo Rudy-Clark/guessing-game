@@ -14,13 +14,16 @@ const implementedColors = colors.reduce((object, key) => {
 }, {});
 
 const styles = () => ({
-  cell: {
+  button: {
     minWidth: '100%',
     height: '100px',
     border: '1px solid #e3e3e3',
     cursor: 'pointer',
     display: 'block',
     outline: 'none',
+    position: 'relative',
+    zIndex: 12,
+    padding: 0,
   },
   default: {
     backgroundColor: '#fff',
@@ -28,25 +31,64 @@ const styles = () => ({
   selected: {
     border: '3px dashed #424242',
   },
+  overlay: {
+    minWidth: '100%',
+    height: '100%',
+    top: 0,
+    left: 0,
+    outline: 'none',
+    backgroundColor: '#fff',
+    border: '1px solid #e3e3e3',
+    position: 'absolute',
+    zIndex: 999,
+    cursor: 'pointer',
+  },
   ...implementedColors,
 });
 
-const Cell = ({ classes, color, selected, handleClick }) => (
+const Cell = ({
+  id,
+  classes,
+  color,
+  selected,
+  handleSelect,
+  hidden,
+  handleChoice,
+}) => (
   <button
-    tabIndex={-1}
     type="button"
-    onClick={handleClick}
-    className={classnames(classes.cell, classes[color || 'default'], {
+    onKeyDown={() => {}}
+    onClick={e => {
+      e.stopPropagation();
+      handleSelect();
+    }}
+    className={classnames(classes.button, classes[color || 'default'], {
       [classes.selected]: selected,
     })}
-  />
+  >
+    {hidden && (
+      <div
+        role="button"
+        onClick={e => {
+          e.stopPropagation();
+          handleChoice(color, id);
+        }}
+        onKeyDown={() => {}}
+        tabIndex={-1}
+        className={classes.overlay}
+      />
+    )}
+  </button>
 );
 
 Cell.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
   selected: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleSelect: PropTypes.func.isRequired,
+  hidden: PropTypes.bool.isRequired,
+  handleChoice: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(Cell);

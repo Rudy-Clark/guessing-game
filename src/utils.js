@@ -43,6 +43,7 @@ export const defaultState = () => {
       color: '',
       selected: false,
       hidden: false,
+      done: false,
     });
   }
   return cells;
