@@ -43,7 +43,7 @@ const reducerCells = (state = defaultState(), action) => {
       const [selItem] = selectedItems;
       return state.map(cell => {
         const newCell = { ...cell, selected: false };
-        if (newCell.id === selItem.id || newCell.id === action.id) {
+        if (newCell.id === selItem.id || newCell.color === selItem.color) {
           newCell.hidden =
             newCell.color !== action.color || selItem.color !== action.color;
           newCell.done = true;

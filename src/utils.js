@@ -34,6 +34,19 @@ const generateId = length => {
   return result;
 };
 
+export const getFormattedTime = startedAt => {
+  const timestamp = new Date(Date.now() - startedAt);
+  const sec =
+    timestamp.getSeconds() < 10
+      ? `0${timestamp.getSeconds()}`
+      : timestamp.getSeconds();
+  const min =
+    timestamp.getMinutes() < 10
+      ? `0${timestamp.getMinutes()}`
+      : timestamp.getMinutes();
+  return { sec, min };
+};
+
 export const defaultState = () => {
   const cells = [];
   // eslint-disable-next-line no-plusplus

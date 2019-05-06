@@ -20,12 +20,12 @@ const styles = () => ({
   },
 });
 
-const Overlay = ({ id, color, handleChoice, classes }) => (
+const Overlay = ({ color, handleChoice, classes }) => (
   <div
     role="button"
     onClick={e => {
       e.stopPropagation();
-      handleChoice(color, id);
+      handleChoice(color);
     }}
     onKeyDown={() => {}}
     tabIndex={-1}
@@ -37,7 +37,6 @@ Overlay.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.string.isRequired,
   handleChoice: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
 };
 
 const styledComponent = withStyles(styles)(Overlay);
