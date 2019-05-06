@@ -6,6 +6,7 @@ import { defaultState, colors } from '../utils';
 const reducerCells = (state = defaultState(), action) => {
   switch (action.type) {
     case SELECT: {
+      console.log(action.id);
       return state.map(item => {
         const newItem = { ...item, selected: false };
         if (item.id === action.id) newItem.selected = !item.selected;
@@ -15,7 +16,13 @@ const reducerCells = (state = defaultState(), action) => {
     case START_GAME: {
       const lottoBox = _zip(colors, colors);
       return state.map(cell => {
-        const newCell = { ...cell, color: '', hidden: false, selected: false };
+        const newCell = {
+          ...cell,
+          color: '',
+          hidden: false,
+          selected: false,
+          done: false,
+        };
         // const randomIndex = Math.floor(Math.random() * lottoBox.length); // native method
         const randomIndex = _random(0, lottoBox.length - 1);
         if (lottoBox[randomIndex].length > 1) {

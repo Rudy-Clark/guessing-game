@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 
 import { colors } from '../utils';
+import Overlay from './Overlay';
 
 const implementedColors = colors.reduce((object, key) => {
   // eslint-disable-next-line no-param-reassign
@@ -46,15 +47,7 @@ const styles = () => ({
   ...implementedColors,
 });
 
-const Cell = ({
-  id,
-  classes,
-  color,
-  selected,
-  handleSelect,
-  hidden,
-  handleChoice,
-}) => (
+const Cell = ({ id, classes, color, selected, handleSelect, hidden }) => (
   <button
     type="button"
     onKeyDown={() => {}}
@@ -66,18 +59,7 @@ const Cell = ({
       [classes.selected]: selected,
     })}
   >
-    {hidden && (
-      <div
-        role="button"
-        onClick={e => {
-          e.stopPropagation();
-          handleChoice(color, id);
-        }}
-        onKeyDown={() => {}}
-        tabIndex={-1}
-        className={classes.overlay}
-      />
-    )}
+    {hidden && <Overlay id={id} color={color} />}
   </button>
 );
 
@@ -87,7 +69,6 @@ Cell.propTypes = {
   selected: PropTypes.bool.isRequired,
   handleSelect: PropTypes.func.isRequired,
   hidden: PropTypes.bool.isRequired,
-  handleChoice: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
 };
 

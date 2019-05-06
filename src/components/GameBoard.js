@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
 import Cell from './Cell';
-import { selectItem, startGame, choiceItem } from '../actions';
+import { selectItem, startGame } from '../actions';
 
 const styles = theme => ({
   paper: {
@@ -24,20 +24,18 @@ const styles = theme => ({
   },
 });
 
-const GameBoard = ({ classes, cells, select, start, handleChoice }) => (
+const GameBoard = ({ classes, cells, select, start }) => (
   <div className={classes.container}>
     <Paper className={classes.paper}>
       <Grid container>
         {cells.map(cell => (
           <Grid key={cell.id} item xs={3}>
             <Cell
-              handleChoice={handleChoice}
               handleSelect={() => {
                 if (cell.done) return;
                 select(cell.id);
               }}
               {...cell}
-              id={cell.id}
             />
           </Grid>
         ))}
@@ -59,7 +57,6 @@ GameBoard.propTypes = {
   cells: PropTypes.array.isRequired,
   select: PropTypes.func.isRequired,
   start: PropTypes.func.isRequired,
-  handleChoice: PropTypes.func.isRequired,
 };
 
 const styledComponent = withStyles(styles)(GameBoard);
@@ -71,7 +68,6 @@ const mapStateToProps = ({ cells }) => ({
 const mapDispatchToProps = dispatch => ({
   select: id => dispatch(selectItem(id)),
   start: () => dispatch(startGame()),
-  handleChoice: (color, id) => dispatch(choiceItem(color, id)),
 });
 
 export default connect(
