@@ -44,6 +44,7 @@ export const defaultState = () => {
       selected: false,
       hidden: false,
       done: false,
+      prepareToHide: false,
     });
   }
   return cells;

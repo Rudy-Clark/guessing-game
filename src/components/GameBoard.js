@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 
 import Cell from './Cell';
-import { selectItem, startGame } from '../actions';
+import { selectItem, startGame, hideCells } from '../actions';
 
 const styles = theme => ({
   paper: {
@@ -67,7 +67,12 @@ const mapStateToProps = ({ cells }) => ({
 
 const mapDispatchToProps = dispatch => ({
   select: id => dispatch(selectItem(id)),
-  start: () => dispatch(startGame()),
+  start: () => {
+    dispatch(startGame());
+    setTimeout(() => {
+      dispatch(hideCells());
+    }, 3000);
+  },
 });
 
 export default connect(
