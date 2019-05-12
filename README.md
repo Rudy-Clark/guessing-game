@@ -2,8 +2,8 @@
 
 Для запуска:
 ```bash
-git clone https://github.com/Rudy-Clark/Task-1
-cd Task-1
+git clone https://github.com/Rudy-Clark/guessing-game
+cd guessing-game
 yarn install // либо npm install 
 yarn start // либо npm run start 
 ```
