@@ -6,7 +6,6 @@ import { defaultState, colors } from '../utils';
 const reducerCells = (state = defaultState(), action) => {
   switch (action.type) {
     case SELECT: {
-      console.log(action.id);
       return state.map(item => {
         const newItem = { ...item, selected: false };
         if (item.id === action.id) newItem.selected = !item.selected;
