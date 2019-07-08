@@ -1,6 +1,6 @@
 Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
-For begin do commands bellow:
+Start:
 ```bash
 git clone https://github.com/Rudy-Clark/guessing-game
 cd guessing-game
