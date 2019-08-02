@@ -36,8 +36,8 @@ const GameBoard = ({ classes, cells, select, start, result, timer, end }) => {
     Found: ${result.found} / ${result.total}
     ${result.found === 8 ? 'You won!' : 'Try Again'}
     `;
-    window.alert(message);
     end();
+    window.alert(message);
   }
   return (
     <div className={classes.container}>

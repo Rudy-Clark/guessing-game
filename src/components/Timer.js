@@ -13,6 +13,7 @@ const styles = theme => ({
     padding: theme.spacing.unit,
   },
 });
+
 let timeoutId;
 const Timer = ({ classes, startedAt, gameRun }) => {
   const [time, setTime] = useState('00:00');
